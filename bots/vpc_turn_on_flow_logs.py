@@ -85,8 +85,7 @@ def check_for_log_delivery_policy(boto_session, policy_arn):
             text_output = 'IAM vpcFlowLogDelivery policy exists in this account.\n'
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'NoSuchEntity':
+        if (error := e.response['Error']['Code']) == 'NoSuchEntity':
             # If the policy isn't there - add it into the account
             text_output = create_log_delivery_policy(boto_session)
         else:
@@ -125,8 +124,7 @@ def create_role(boto_session, policy_arn):
             text_output = 'vpcFlowLogDelivery role successfully created.\n'
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'EntityAlreadyExists':
+        if (error := e.response['Error']['Code']) == 'EntityAlreadyExists':
             # If the policy isn't there - add it into the account
             text_output = 'vpcFlowLogDelivery role already exists in this account.\n'
         else:
@@ -189,8 +187,7 @@ def create_logs(boto_session, role_id, vpc_id, traffic_type, destination, bucket
             text_output = 'Unexpected error: %s \n'
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'FlowLogAlreadyExists':
+        if (error := e.response['Error']['Code']) == 'FlowLogAlreadyExists':
             # If the policy isn't there - add it into the account
             text_output = 'There is an existing Flow Log in this VPC with the same configuration and log group. Skipping.\n'
         else:

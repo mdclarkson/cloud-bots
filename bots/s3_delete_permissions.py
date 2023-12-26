@@ -30,8 +30,7 @@ def run_action(boto_session,rule,entity,params):
 
     except ClientError as e:
         print(f'{__file__} - s3_delete_permissions.py - Error - {e}')
-        error = e.response['Error']['Code']
-        if error == 'NoSuchBucketPolicy':
+        if (error := e.response['Error']['Code']) == 'NoSuchBucketPolicy':
             text_output = "Bucket %s does not have a bucket policy. Checking ACLs next.\n" % bucket
         else:
             text_output = "Unexpected error: %s \n" % e

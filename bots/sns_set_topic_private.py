@@ -45,8 +45,7 @@ def run_action(session, rule, entity, params):
         return "Error, no policy was given to the bot." \
                "Usage: sns_set_topic_private policy=<class str>policy"
 
-    text_output = check_policy(policy_string)
-    if text_output is True:
+    if (text_output := check_policy(policy_string)) is True:
         try:
             client.set_topic_attributes(
                 TopicArn=topic_arn,

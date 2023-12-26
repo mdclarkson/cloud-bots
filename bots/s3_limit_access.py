@@ -53,8 +53,7 @@ def update_policy_statement(policy_statement, text_output):
             actions = obj['Action']
 
         for action in actions:
-            match = check_match(action)
-            if match:
+            if match := check_match(action):
                 policy_statement, text_output = handle_object(policy_statement, obj, action, text_output)
             else:
                 continue

@@ -57,8 +57,7 @@ Check if two scopes intersect , if it does returns true
 def is_two_scopes_overlap_ipv4(scope1, scope2):
     n1 = ipaddress.IPv4Network(scope1)
     n2 = ipaddress.IPv4Network(scope2)
-    intersect = n2.overlaps(n1)
-    if intersect:
+    if intersect := n2.overlaps(n1):
         return True
     else:
         return False  # cidr if out of scope bounds
@@ -256,8 +255,7 @@ def create_bucket(boto_session, entity, bucket_name):
         print(f'{__file__} - Bucket doesnt exist. Creating bucket... \n')
         # Creates the bucket:
         try:
-            region = entity['region'].replace("_", "-")
-            if region == 'us-east-1':
+            if (region := entity['region'].replace("_", "-")) == 'us-east-1':
                 result = s3_client.create_bucket(
                     Bucket=bucket_name
                 )

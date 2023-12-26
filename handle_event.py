@@ -24,8 +24,7 @@ def get_data_from_message(message):
             data['compliance_tags'] = message['rule']['complianceTags'].split('|')
     if 'status' in message:
         data['status'] = message['status']
-    entity = message.get('entity')
-    if entity:
+    if entity := message.get('entity'):
         data['entity_id'] = entity.get('id')
         data['entity_name'] = entity.get('name')
         data['region'] = entity.get('region')

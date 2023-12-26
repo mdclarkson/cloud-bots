@@ -18,9 +18,8 @@ def run_action(boto_session, rule, entity, params, report_time):
     ecr_client = boto3.client('ecr')
 
     # looking for the event
-    event = bots_utils.cloudtrail_event_lookup(boto_session, entity, EVENT_NAME)
 
-    if event is None:
+    if (event := bots_utils.cloudtrail_event_lookup(boto_session, entity, EVENT_NAME)) is None:
         return "Error when looking for the DescribeImageScanFindings event, 0 events returned"
 
     # taking all the image details that we need to delete the malicious image

@@ -47,8 +47,7 @@ def create_role(iam_client):
             text_output = "CloudTrail to CLoudwatch role successfully created.\n"
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'EntityAlreadyExists':
+        if (error := e.response['Error']['Code']) == 'EntityAlreadyExists':
              text_output =  "%s role already exists in this account\n" % role_name
         else:
             text_output = "Unexpected error: %s \n" % e
@@ -87,8 +86,7 @@ def create_log_delivery_policy(iam_client,log_group_arn):
             text_output = "CloudWatchLogsAllowDelivery policy successfully created.\n"  
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'EntityAlreadyExists':
+        if (error := e.response['Error']['Code']) == 'EntityAlreadyExists':
              text_output =  "CloudWatchLogsAllowDelivery policy already exists in this account\n" 
         else:
             text_output = "Unexpected error: %s \n" % e
@@ -133,8 +131,7 @@ def create_log_group(boto_session,log_group_name):
             text_output = "Log group created: %s \n" % log_group_name
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'ResourceAlreadyExistsException':
+        if (error := e.response['Error']['Code']) == 'ResourceAlreadyExistsException':
             text_output = "Log group already exists. Skipping\n"
         else:
             text_output = "Unexpected error: %s \n" % e

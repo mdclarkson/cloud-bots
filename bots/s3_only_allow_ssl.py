@@ -115,9 +115,8 @@ def check_for_get_put_action(policy_bucket):
 # of the missing actions
 def get_missing_statements(bucket_name, account_number, options):
 
-    missing_action = find_missing_action(options)
 
-    if missing_action == 'ssl':  # need to add only ssl action
+    if (missing_action := find_missing_action(options)) == 'ssl':  # need to add only ssl action
 
         SSL_STAT["Resource"] = SSL_STAT.get("Resource").replace("bucketName", bucket_name)
         return SSL_STAT, None

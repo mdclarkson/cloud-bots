@@ -51,8 +51,7 @@ def check_for_deny_policy(boto_session,policy_arn):
             text_output =  "IAM deny-all policy exists in this account.\n"
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'NoSuchEntity':
+        if (error := e.response['Error']['Code']) == 'NoSuchEntity':
             #If the policy isn't there - add it into the account
             text_output = create_deny_policy(boto_session)
         else:

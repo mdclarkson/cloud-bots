@@ -25,8 +25,7 @@ def check_for_policy(iam_client, policy_arn):
             found_policy = True
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'NoSuchEntity':
+        if (error := e.response['Error']['Code']) == 'NoSuchEntity':
             text_output = 'The policy %s does not exist. Please check and try again.\n' % policy_arn
         else:
             text_output = 'Unexpected error: %s \n' % e

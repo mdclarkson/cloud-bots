@@ -55,8 +55,7 @@ def create_role(iam_client):
             text_output = 'AWS Config role successfully created.\n'
 
     except ClientError as e:
-        error = e.response['Error']['Code']
-        if error == 'EntityAlreadyExists':
+        if (error := e.response['Error']['Code']) == 'EntityAlreadyExists':
             text_output = 'AWSConfigRole role already exists in this account\n'
         else:
             text_output = 'Unexpected error: %s \n' % e
@@ -175,8 +174,7 @@ def create_bucket(s3_client, s3_resource, region, target_bucket_name, accountNum
                 text_output = 'Config logs bucket created %s \n' % target_bucket_name
 
         except ClientError as e:
-            error = e.response['Error']['Code']
-            if error == 'BucketAlreadyOwnedByYou':
+            if (error := e.response['Error']['Code']) == 'BucketAlreadyOwnedByYou':
                 text_output = 'Bucket %s already owned by this account. Checking bucket policy next\n' % target_bucket_name
             elif error == 'BucketAlreadyExists':
                 text_output = 'Bucket %s already exists. Checking bucket policy next\n' % target_bucket_name

@@ -18,10 +18,9 @@ def run_action(boto_session, rule, entity, params):
     iam_client = boto3.client('iam')
 
     # look for event in cloudtrail
-    event = bots_utils.cloudtrail_event_lookup(boto_session, entity, EVENT_NAME)
 
     # in case that the cloudtrail_event_lookup failed to find events
-    if event is None:
+    if (event := bots_utils.cloudtrail_event_lookup(boto_session, entity, EVENT_NAME)) is None:
         return "Error when looking for the CreateAccessKey event, 0 events returned"
 
     # take the access key details from the event

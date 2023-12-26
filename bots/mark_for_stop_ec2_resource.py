@@ -36,9 +36,9 @@ def run_action(boto_session,rule,entity,params):
     try:
         matches = re.findall('(\d+)([mMhHdD])', params[0])
         number = int(matches[0][0]) # The 1 in 1h for example
-        unit = matches[0][1].lower() # days hours or minutes
+# days hours or minutes
 
-        if unit == "m":
+        if (unit := matches[0][1].lower()) == "m":
             seconds = 60
         elif unit == "h":
             seconds = 3600

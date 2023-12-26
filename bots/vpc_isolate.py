@@ -33,8 +33,7 @@ def create_acl(ec2_client, vpc_id):
         # Going through all each acl and checking for associated subnets
         for acl in network_acl_iterator.get('NetworkAcls'):
 
-            associations = acl.get('Associations')
-            if associations:
+            if associations := acl.get('Associations'):
                 # gets all subnets from the acl in an array and adding it to association_ids array
                 association_ids += [association.get('NetworkAclAssociationId') for association in associations]
 
@@ -131,9 +130,8 @@ def check_for_policy(boto_session, policy_arn):
         iam_client.get_policy(PolicyArn=policy_arn)
 
     except ClientError as e:
-        error = e.response['Error']['Code']
 
-        if error == 'NoSuchEntity':
+        if (error := e.response['Error']['Code']) == 'NoSuchEntity':
             # If the policy isn't there - add it into the account
             return False
         else:
