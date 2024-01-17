@@ -23,7 +23,7 @@ def get_kms_key(boto_session, key_id, region):
 
 def run_action(boto_session, rule, entity, params):
     if not 0 <= len(params) <= 2:
-        raise ValueError(f"Error: Wrong use of the sqs_enforce_sse bot. Usage: sqs_enforce_sse or sqs_enforce_sse <kmsKeyId> or sqs_enforce_sse <kmsKeyId> <kmsRegion> if the key is in a different region than the SQS. \n")
+        raise ValueError("Error: Wrong use of the sqs_enforce_sse bot. Usage: sqs_enforce_sse or sqs_enforce_sse <kmsKeyId> or sqs_enforce_sse <kmsKeyId> <kmsRegion> if the key is in a different region than the SQS. \n")
 
     sqs_client = boto_session.client('sqs')
     queue_url = entity['queueUrl']

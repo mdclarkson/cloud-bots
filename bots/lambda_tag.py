@@ -24,7 +24,7 @@ def run_action(boto_session, rule, entity, params):
         value = ''
 
     else:
-        text_output = f"Error: Wrong use of the lambda_tag bot. Usage: lambda_tag <key> <value> (<value> is optional). Make sure the correct parameters are provided. \
+        text_output = "Error: Wrong use of the lambda_tag bot. Usage: lambda_tag <key> <value> (<value> is optional). Make sure the correct parameters are provided. \
                 if the parameters include spaces make sure each one surrounded bu quotes."
         return text_output
 

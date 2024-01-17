@@ -25,17 +25,17 @@ relaunch_stack = 'https://github.com/dome9/cloud-bots#update-cloudbots'
 
 def run_action(boto_session, rule, entity, params):
     if len(params) != 3:
-        return f"Error: Wrong use of the network_firewall_enable_logging bot. Usage: network_firewall_enable_logging <LoggingType> <LogDestinationType> <LogDestination>. <LoggingType> can be one of the following: flow, alert. <LogDestinationType> can be one of the following: S3, CloudWatchLogs, KinesisDataFirehose. \n"
+        return "Error: Wrong use of the network_firewall_enable_logging bot. Usage: network_firewall_enable_logging <LoggingType> <LogDestinationType> <LogDestination>. <LoggingType> can be one of the following: flow, alert. <LogDestinationType> can be one of the following: S3, CloudWatchLogs, KinesisDataFirehose. \n"
     if params[0].upper() not in ['FLOW','ALERT']:
-        return f"Error: Wrong use of the network_firewall_enable_logging bot. Usage: network_firewall_enable_logging <LoggingType> <LogDestinationType> <LogDestination>. <LoggingType> can be one of the following: flow, alert. \n"
+        return "Error: Wrong use of the network_firewall_enable_logging bot. Usage: network_firewall_enable_logging <LoggingType> <LogDestinationType> <LogDestination>. <LoggingType> can be one of the following: flow, alert. \n"
     if params[1] not in ['S3', 'CloudWatchLogs', 'KinesisDataFirehose']:
-        return f"Error: Wrong use of the network_firewall_enable_logging bot. Usage: Usage: network_firewall_enable_logging <LoggingType> <LogDestinationType> <LogDestination>. <LogDestinationType> can be one of the following (Case Sensitive): S3, CloudWatchLogs, KinesisDataFirehose. \n"
+        return "Error: Wrong use of the network_firewall_enable_logging bot. Usage: Usage: network_firewall_enable_logging <LoggingType> <LogDestinationType> <LogDestination>. <LogDestinationType> can be one of the following (Case Sensitive): S3, CloudWatchLogs, KinesisDataFirehose. \n"
     logging_type = params[0].upper()
     dest_type = params[1]
     dest = params[2]
 
     if dest.lower() == 'create' and dest_type not in ['S3', 'CloudWatchLogs']:
-        return f"Error: Wrong use of the network_firewall_enable_logging bot. The destination can be created by the bot only for S3 or CloudWatchLogs. \n"
+        return "Error: Wrong use of the network_firewall_enable_logging bot. The destination can be created by the bot only for S3 or CloudWatchLogs. \n"
     print(f'{__file__} - Logs destination type: {dest_type} \n')
     if dest.lower() == 'create':
         account = entity['accountNumber']
