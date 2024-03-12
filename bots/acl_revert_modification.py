@@ -127,11 +127,12 @@ def delete_entry(boto_session, params):
     return text_output
 
 
-def get_event(boto_session, attribute_value, entity={}):
+def get_event(boto_session, attribute_value, entity=None):
     '''
     function will get event related to given attribute_value
     In this case attribute_value is the acl which was modified.
     '''
+    entity = {} if entity is None else entity
 
     # create CloudTrail client
     client = boto_session.client('cloudtrail')
