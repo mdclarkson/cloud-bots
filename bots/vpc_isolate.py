@@ -102,7 +102,7 @@ def create_deny_policy(boto_session, region, vpc_id):
                 ],
                 "Condition": {
                     "ArnEquals": {
-                        f"ec2:Vpc": f"arn:aws:ec2:{region}:*:vpc/{vpc_id}"
+                        "ec2:Vpc": f"arn:aws:ec2:{region}:*:vpc/{vpc_id}"
                     }
                 }
             }

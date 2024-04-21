@@ -138,7 +138,7 @@ def update_sg(sg, sg_id, rule, scope, direction, text_output):
             text_output = text_output + f'Error while trying to create security group. Error: {e}'
             return text_output
     else:
-        text_output = text_output + f'Error unknown direction ; \n'
+        text_output = text_output + 'Error unknown direction ; \n'
 
     return text_output
 

@@ -34,7 +34,7 @@ def handle_object(policy_statement, obj, action, text_output):
             text_output = text_output + f'Action {action} will be removed from the actions list. \n'
             if len(obj['Action']) == 0:  # if this is the only action left, we can remove the whole object
                 policy_statement.remove(obj)
-                text_output = text_output + f'All actions will be removed from the object. deleting the object from the statement. \n'
+                text_output = text_output + 'All actions will be removed from the object. deleting the object from the statement. \n'
         except Exception as e:
             text_output = text_output + f'Couldnt remove action {action}. Error: {e} \n'
 
@@ -84,7 +84,7 @@ def run_action(boto_session, rule, entity, params):
             result = s3_client.delete_bucket_policy(
                 Bucket=bucket,
             )
-            text_output = text_output + f"All the objects in the policy were risky and removed, the policy is now empty. \n"
+            text_output = text_output + "All the objects in the policy were risky and removed, the policy is now empty. \n"
 
         else:
             # Serializing json

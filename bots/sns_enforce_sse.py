@@ -17,7 +17,7 @@ def get_kms_key(boto_session, key_id, region):
 
 def run_action(session, rule, entity, params):
     if not 1 <= len(params) <= 2:
-        return f"Error: Wrong use of the sns_enforce_sse bot. Usage: sns_enforce_sse <kmsKeyId> or sns_enforce_sse <kmsKeyId> <kmsRegion> if the key is in a different region than the SNS. \n"
+        return "Error: Wrong use of the sns_enforce_sse bot. Usage: sns_enforce_sse <kmsKeyId> or sns_enforce_sse <kmsKeyId> <kmsRegion> if the key is in a different region than the SNS. \n"
 
     key_id = params[0]
     if len(params) == 2:

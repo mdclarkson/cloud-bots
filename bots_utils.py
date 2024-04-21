@@ -135,7 +135,7 @@ def delete_sg(sg, sg_id, rule, direction, text_output):
             text_output = text_output + f'Error while trying to delete security group. Error: {e}'
 
     else:
-        text_output = text_output + f'Error unknown direction ; \n'
+        text_output = text_output + 'Error unknown direction ; \n'
 
     return text_output
 

@@ -16,11 +16,11 @@ As a security best practice, we recommend encrypting with kms. Please refer our 
 def run_action(boto_session, rule, entity, params):
     if not 1 <= len(params) <= 2:
         raise ValueError(
-            f"Error: Wrong use of s3_enable_encryption. Usage: s3_enable_encryption <encryption_type> <kms-key-arn> (<kms-key-arn> should be provided only if <encryption_type> is KMS) \n")
+            "Error: Wrong use of s3_enable_encryption. Usage: s3_enable_encryption <encryption_type> <kms-key-arn> (<kms-key-arn> should be provided only if <encryption_type> is KMS) \n")
     encryption_type = params[0].lower()
     if len(params) == 1 and encryption_type == 'kms':
         raise ValueError(
-            f"Error: Wrong use of s3_enable_encryption. If <encryption_type> is KMS, you must provide the key's arn. \n")
+            "Error: Wrong use of s3_enable_encryption. If <encryption_type> is KMS, you must provide the key's arn. \n")
 
     if encryption_type == 'kms':
         kms_arn = params[1]

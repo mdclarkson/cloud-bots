@@ -25,7 +25,7 @@ def run_action(boto_session, rule, entity, params):
             complete = result['State'] == 'COMPLETE'
 
         print(f'{__file__} - Done. \n')
-        text_output = text_output + f'Successfully generated a credential report. \n'
+        text_output = text_output + 'Successfully generated a credential report. \n'
 
     except ClientError as e:
         text_output = f"Unexpected client error: {e} \n"

@@ -20,6 +20,6 @@ def run_action(boto_session, rule, entity, params):
         print(f'{__file__} - Done. \n')
         operation_id = result['OperationId']
         text_output = f'Successfully enabled transfer-lock for the domain: {domain}. You can use the following operation id: {operation_id} to track the progress' \
-                      f' and completion of the action.\n'
+                      ' and completion of the action.\n'
 
     return text_output
